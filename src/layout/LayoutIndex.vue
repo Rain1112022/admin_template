@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import LayoutSidebar from './components/LayoutSidebar.vue';
 import LayoutNavbar from './components/LayoutNavbar.vue';
 import LayoutMain from './components/LayoutMain.vue';
@@ -10,16 +10,20 @@ const classObj = computed(() => ({
   openSidebar: appStore.getSidebarOpened,
   withoutAnimation: appStore.getSidebarWithoutAnimation,
 }));
-watch(classObj,(nv) => {
+watch(classObj, (nv) => {
   console.log(nv);
-  if(nv && nv.hideSidebar ){
-    document.querySelector(".sidebar-container").style.setProperty("--sideWidth","54px")
-    document.querySelector(".main-container").style.setProperty("--sideWidth","54px")
-  }else{
-    document.querySelector(".sidebar-container").style.setProperty("--sideWidth","210px")
-    document.querySelector(".main-container").style.setProperty("--sideWidth","210px")
+  if (nv && nv.hideSidebar) {
+    let side = document.querySelector('.sidebar-container') as HTMLElement;
+    side.style.setProperty('--sideWidth', '54px');
+    let main = document.querySelector('.main-container') as HTMLElement;
+    main.style.setProperty('--sideWidth', '54px');
+  } else {
+    let side = document.querySelector('.sidebar-container') as HTMLElement;
+    side.style.setProperty('--sideWidth', '210px');
+    let main = document.querySelector('.main-container') as HTMLElement;
+    main.style.setProperty('--sideWidth', '210px');
   }
-})
+});
 </script>
 
 <template>
