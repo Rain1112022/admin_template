@@ -1,0 +1,212 @@
+@use 'variables.scss' as *;
+#app {
+  .main-container {
+    width: calc(100% - $sideBarWidth);
+    min-height: 100%;
+    transition: margin-left 0.28s;
+    margin-left: $sideBarWidth;
+    position: relative;
+  }
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    background-color: $menuBg;
+    height: 100%;
+    position: fixed;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    overflow: hidden;
+    .sidebar-title {
+      box-sizing: border-box;
+      height: 64px;
+      width: 100%;
+      padding: 0 var(--el-menu-base-level-padding);
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .sidebar-title-logo {
+        min-width: 50px;
+      }
+      .sidebar-title-text {
+        min-width: 100px;
+        height: 64;
+        line-height: center;
+        text-align: center;
+        font-size: 20px;
+        color: #ffffff;
+      }
+    }
+
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+    }
+    .el-scrollbar__bar.is-vertical {
+      right: 0px;
+    }
+
+    .el-scrollbar {
+      height: calc(100% - 64px);
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    .el-menu {
+      border: none;
+      height: 100%;
+      width: 100% !important;
+    }
+
+    .submenu-title-noDropdown,
+    .el-sub-menu__title {
+      &:hover {
+        background-color: $menuHover !important;
+      }
+    }
+
+    .is-active > .el-sub-menu__title {
+      color: $subMenuActiveText !important;
+    }
+
+    & .nest-menu .el-sub-menu > .el-sub-menu__title,
+    & .el-sub-menu .el-menu-item {
+      min-width: $sideBarWidth !important;
+      background-color: $subMenuBg !important;
+
+      &:hover {
+        background-color: $subMenuHover !important;
+      }
+    }
+  }
+
+  .hideSidebar {
+    // .sidebar-container {
+    //   width: 54px !important;
+    // }
+    .sidebar-title {
+      box-sizing: border-box;
+      height: 64px;
+      width: 100%;
+      padding: 0;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .sidebar-title-logo {
+        min-width: 50px;
+      }
+      .sidebar-title-text {
+        display: none;
+      }
+
+      // .main-container {
+      //   margin-left: 54px;
+      // }
+
+      .submenu-title-noDropdown {
+        padding: 0 !important;
+        position: relative;
+      }
+
+      .el-sub-menu {
+        overflow: hidden;
+
+        & > .el-sub-menu__title {
+          // padding: 0 !important;
+
+          .el-sub-menu__icon-arrow {
+            display: none;
+          }
+        }
+      }
+
+      .el-menu--collapse {
+        .el-sub-menu {
+          & > .el-sub-menu__title {
+            & > span {
+              height: 0;
+              width: 0;
+              overflow: hidden;
+              visibility: hidden;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+
+    .main-container {
+      margin-left: 54px;
+    }
+
+    .submenu-title-noDropdown {
+      padding: 0 !important;
+      position: relative;
+
+      .el-tooltip {
+        padding: 0 !important;
+
+        .svg-icon {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .el-sub-menu {
+      overflow: hidden;
+      .el-icon {
+        margin-right: 20px !important;
+      }
+      .el-sub-menu__icon-arrow {
+        display: none;
+      }
+    }
+
+    .el-menu--collapse .el-menu .el-sub-menu {
+      min-width: $sideBarWidth !important;
+    }
+    .withoutAnimation {
+      .main-container,
+      .sidebar-container {
+        transition: none;
+      }
+    }
+  }
+
+  .el-menu--vertical {
+    .el-menu-item {
+      .el-icon {
+        margin-right: 20px !important;
+      }
+    }
+
+    .nest-menu .el-sub-menu > .el-sub-menu__title,
+    .el-menu-item {
+      &:hover {
+        background-color: $menuHover !important;
+      }
+    }
+
+    > .el-menu--popup {
+      max-height: 100vh;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar-track-piece {
+        background: #d3dce6;
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #99a9bf;
+        border-radius: 20px;
+      }
+    }
+  }
+}
